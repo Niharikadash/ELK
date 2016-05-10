@@ -1,6 +1,7 @@
 # ELK
 
-#for elk setup first we have to install JAVA 
+
+For elk setup first we have to install JAVA and export JAVA_HOME and JAVA_PATH variables.
 
   $ yum install -y java-1.8.0-openjdk
   $ alternative --config java   #To set java-1.8.0-openjdk defalt 
