@@ -48,6 +48,10 @@ Add following entries to /etc/logstash/conf.d/logstash.conf file :
    elasticsearch { hosts => ["localhost:9200"] }
    stdout { codec => rubydebug }
   }
+  
+Now start the elasticsearch and logstash
+  $ service elasticsearch start
+  $ service logstash start
 
 And atlast installing Kibana
 
@@ -55,6 +59,17 @@ And atlast installing Kibana
   $ tar xzf kibana-4.1.2-linux-x64.tar.gz
   $ cd kibana-4.1.2-linux-x64
   $ nohup ./bin/kibana &
+  
+Verify using netstat command that elasticsearch is listening on port 9200 and 9300 and Kibana on port 5601.
+  $ netstat -tunapl |grep LISTEN
+      tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1437/sshd           
+      tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      1124/master         
+      tcp        0      0 0.0.0.0:5601            0.0.0.0:*               LISTEN      2789/./../node/bin/ 
+      tcp6       0      0 :::9200                 :::*                    LISTEN      5040/java           
+      tcp6       0      0 :::9300                 :::*                    LISTEN      5040/java           
+      tcp6       0      0 :::9301                 :::*                    LISTEN      765/java            
+      tcp6       0      0 :::22                   :::*                    LISTEN      1437/sshd           
+      tcp6       0      0 ::1:25                  :::*                    LISTEN      1124/master
   
 
 
